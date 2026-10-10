@@ -47,7 +47,7 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;background:var(--frame);color:var(--text);font-family:var(--sans);overflow:hidden;-webkit-font-smoothing:antialiased}
-#stage{position:fixed;left:50%;top:50%;width:1600px;height:900px;transform-origin:center center;display:grid;grid-template-rows:60px 1fr 60px;background:var(--bg)}
+#stage{position:fixed;left:50%;top:50%;width:1600px;height:900px;transform-origin:center center;display:grid;grid-template-rows:84px 1fr 60px;background:var(--bg)}
 header.bar,footer.bar{display:flex;align-items:center;gap:18px;padding:0 32px;font-size:16px}
 .brand{font:600 14px var(--sans);color:var(--muted)}
 .ctx{margin-left:auto;color:var(--muted);font-size:15px}
@@ -58,7 +58,7 @@ header.bar,footer.bar{display:flex;align-items:center;gap:18px;padding:0 32px;fo
 .progress{flex:1;height:2px;background:var(--line);border-radius:2px;overflow:hidden}
 .progress i{display:block;height:100%;background:var(--text);width:0}
 #deck{position:relative;overflow:hidden}
-section.slide{position:absolute;inset:0;padding:36px 84px 24px;display:none;flex-direction:column;gap:18px;overflow:hidden}
+section.slide{position:absolute;inset:0;padding:26px 84px 24px;display:none;flex-direction:column;gap:18px;overflow:hidden}
 section.slide.active{display:flex}
 .kicker{font:700 13px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--concept)}
 h1{font:700 70px/1.0 var(--sans);letter-spacing:-.03em;margin:0}
@@ -95,7 +95,7 @@ ul,ol{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:8px}
 section.slide.over{overflow-y:auto}
 .score{font:500 15px var(--mono);color:var(--muted)}
 .opts.tight button{font-size:20px;padding:9px 16px}
-#stage>.overlay{position:absolute;inset:60px 0 60px;background:var(--bg);display:none;z-index:5;overflow:auto;padding:30px 60px}
+#stage>.overlay{position:absolute;inset:84px 0 60px;background:var(--bg);display:none;z-index:5;overflow:auto;padding:30px 60px}
 #stage>.overlay.open{display:block}
 #map a{display:flex;gap:12px;font-size:19px;padding:6px 10px;border-radius:8px;color:var(--text);text-decoration:none;cursor:pointer}
 #map a:hover{background:var(--surface)}
@@ -110,7 +110,7 @@ aside.notes{display:none}
 <body>
 <div id="stage">
 <header class="bar">
-  <a href="index.html" onclick="try{localStorage.setItem('fiz-lang','en')}catch(e){}" style="display:flex;align-items:center;gap:18px;text-decoration:none"><img src="assets/logo.svg" alt="YTU" style="height:52px" onerror="this.remove()"><span class="brand">FIZ1001 · Exam Prep · Prof. Dr. Bora Işıldak</span></a>
+  <a href="index.html" onclick="try{localStorage.setItem('fiz-lang','en')}catch(e){}" style="display:flex;align-items:center;gap:18px;text-decoration:none"><img src="assets/logo.svg" alt="YTU" style="height:72px" onerror="this.remove()"><span class="brand">FIZ1001 · Exam Prep · Prof. Dr. Bora Işıldak</span></a>
   <span class="ctx" id="ctx"></span>
   <span class="score" id="score"></span>
 </header>
