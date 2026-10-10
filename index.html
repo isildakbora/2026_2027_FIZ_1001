@@ -28,10 +28,10 @@ h1{font-size:40px;letter-spacing:-.028em;margin:0 0 8px;font-weight:700}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
 
-.wk{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;
+.wk{position:relative;background:var(--p,var(--card));border:1px solid var(--pl,var(--line));border-radius:14px;
   padding:18px 20px 16px;transition:transform .14s,box-shadow .14s,border-color .14s}
-.wk:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.07);border-color:var(--acc)}
-.wk.hi{background:var(--bar);border-color:var(--acc)}
+:root[data-theme="dark"] .wk{background:var(--pd,var(--card));border-color:var(--pdl,var(--line))}
+.wk:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.08)}
 .wk .go{position:absolute;inset:0;border-radius:14px;z-index:0}
 .wk .k{font:700 12px/1.2 inherit;letter-spacing:.09em;text-transform:uppercase;color:var(--mut);position:relative;z-index:1;pointer-events:none}
 .wk h3{font-size:21px;line-height:1.25;margin:7px 0 12px;font-weight:600;letter-spacing:-.015em;position:relative;z-index:1;pointer-events:none}
@@ -39,7 +39,8 @@ h1{font-size:40px;letter-spacing:-.028em;margin:0 0 8px;font-weight:700}
 .tps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
 .tps a{position:relative;z-index:1;display:flex;justify-content:space-between;gap:10px;align-items:baseline;
   font-size:15px;line-height:1.4;color:var(--tx);text-decoration:none;padding:4px 6px;margin:0 -6px;border-radius:7px}
-.tps a:hover{background:var(--bg);color:var(--acc)}
+.tps a:hover{background:rgba(255,255,255,.6);color:var(--tx)}
+:root[data-theme="dark"] .tps a:hover{background:rgba(0,0,0,.25)}
 .tps a i{font-style:normal;color:var(--mut);font:500 13px/1 ui-monospace,monospace;flex:none}
 
 .wk .foot{position:relative;z-index:1;pointer-events:none;margin-top:12px;padding-top:11px;border-top:1px solid var(--line);
@@ -83,6 +84,14 @@ const T = {
         go:'Go to questions', q:'questions', wk:'Week',
         note:'Answer first, then press <code>→</code> to reveal the solution steps. Solutions reviewed with Claude Opus 5.5; figures are hand-drawn SVG. Single files, no internet connection required.' }
 };
+// [açık zemin, kenarlık, koyu zemin, koyu kenarlık]
+const PASTEL = [
+  ['#fdf3dc', '#f1dfae', '#3a3121', '#5a4b2a'],
+  ['#e0eefb', '#c4dcf4', '#1f2d3d', '#33506e'],
+  ['#e4f5e6', '#c6e6cb', '#1e3124', '#34573d'],
+  ['#f9e4ee', '#f0c6da', '#3a2230', '#5e3a4f'],
+  ['#ece6f9', '#d6cbf0', '#2a2438', '#4a3e66'],
+];
 let lang = localStorage.getItem('fiz-lang') || 'tr';
 const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
@@ -100,7 +109,8 @@ function render(){
   document.getElementById('grid').innerHTML = d.map((w,i) => {
     const rows = w.rows.map(r =>
       `<li><a href="${f}#${r.h}"><span>${esc(r.t)}</span><i>${r.n}</i></a></li>`).join('');
-    return `<div class="wk">
+    const c = PASTEL[i % PASTEL.length];
+    return `<div class="wk" style="--p:${c[0]};--pl:${c[1]};--pd:${c[2]};--pdl:${c[3]}">
       <a class="go" href="${f}#${w.h}" aria-label="${esc(w.title)}"></a>
       <div class="k">${t.wk} ${i+1} · ${w.n} ${t.q}</div>
       <h3>${esc(w.title.replace(/^H\d\s·\s/,''))}</h3>
