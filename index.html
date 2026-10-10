@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FIZ1001 · 1. Arasınav Soru Çözümleri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbfbfa;--card:#fff;--line:#e6e5e1;--tx:#14161a;--mut:#6b7178;--acc:#1b5ea6;--bar:#eef4fd}
+:root[data-theme="dark"]{--bg:#0c0e11;--card:#14171c;--line:#262a31;--tx:#f1f2ef;--mut:#98a0a8;--acc:#72b2f4;--bar:#132134;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--tx);font-family:"Instrument Sans",-apple-system,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:34px 26px 70px}
+
+.bar{display:flex;align-items:center;gap:14px;margin-bottom:34px;flex-wrap:wrap}
+.bar img{height:40px}
+:root[data-theme="dark"] .bar img{filter:brightness(0) invert(1)}
+.bar .sp{flex:1}
+.bar button{border:1px solid var(--line);background:var(--card);color:var(--tx);border-radius:9px;
+  padding:8px 14px;font:600 14px/1 inherit;cursor:pointer}
+.bar button.on{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+
+h1{font-size:40px;letter-spacing:-.028em;margin:0 0 8px;font-weight:700}
+.lead{color:var(--mut);font-size:18px;margin:0 0 6px;max-width:72ch;line-height:1.5}
+.meta{color:var(--mut);font-size:15px;margin:0 0 30px}
+.meta b{color:var(--tx);font-weight:600}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+
+.wk{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:18px 20px 16px;transition:transform .14s,box-shadow .14s,border-color .14s}
+.wk:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.07);border-color:var(--acc)}
+.wk.hi{background:var(--bar);border-color:var(--acc)}
+.wk .go{position:absolute;inset:0;border-radius:14px;z-index:0}
+.wk .k{font:700 12px/1.2 inherit;letter-spacing:.09em;text-transform:uppercase;color:var(--mut);position:relative;z-index:1;pointer-events:none}
+.wk h3{font-size:21px;line-height:1.25;margin:7px 0 12px;font-weight:600;letter-spacing:-.015em;position:relative;z-index:1;pointer-events:none}
+
+.tps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.tps a{position:relative;z-index:1;display:flex;justify-content:space-between;gap:10px;align-items:baseline;
+  font-size:15px;line-height:1.4;color:var(--tx);text-decoration:none;padding:4px 6px;margin:0 -6px;border-radius:7px}
+.tps a:hover{background:var(--bg);color:var(--acc)}
+.tps a i{font-style:normal;color:var(--mut);font:500 13px/1 ui-monospace,monospace;flex:none}
+
+.wk .foot{position:relative;z-index:1;pointer-events:none;margin-top:12px;padding-top:11px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;color:var(--mut);font-size:14px}
+.wk .foot b{color:var(--acc);font-weight:600}
+
+.note{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:var(--mut);font-size:15px;line-height:1.6}
+.note code{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:2px 7px;font:500 13px/1 ui-monospace,monospace}
+
+@media (max-width:600px){h1{font-size:30px}.grid{grid-template-columns:1fr}.wrap{padding:22px 16px 50px}}
+</style>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("lesson-theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(e){}</script>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar">
+    <img src="assets/logo.svg" alt="YTÜ" onerror="this.remove()">
+    <span class="sp"></span>
+    <button id="bl-tr" onclick="setLang('tr')">TR</button>
+    <button id="bl-en" onclick="setLang('en')">EN</button>
+    <button id="bt" onclick="tog()">◐</button>
+  </div>
+
+  <h1 id="ttl"></h1>
+  <p class="lead" id="lead"></p>
+  <p class="meta" id="meta"></p>
+  <div class="grid" id="grid"></div>
+  <p class="note" id="note"></p>
+</div>
+
+<script>
+const DATA = {"tr": [{"w": "H1", "title": "H1 · Ölçme, Birimler ve Vektörler", "h": 5, "n": 38, "rows": [{"t": "Birim ve Boyut Analizi", "n": 9, "h": 5}, {"t": "Vektörel Çarpım", "n": 11, "h": 7}, {"t": "Vektör İşlemleri", "n": 9, "h": 17}, {"t": "Skaler Çarpım ve Açı", "n": 9, "h": 9}]}, {"w": "H2", "title": "H2 · Kinematik (1/2)", "h": 83, "n": 113, "rows": [{"t": "Grafikler", "n": 3, "h": 101}, {"t": "Bağıl Hareket", "n": 22, "h": 87}, {"t": "Eğik Atış", "n": 29, "h": 89}, {"t": "Düşey ve Yatay Atış", "n": 18, "h": 99}, {"t": "Türev ve İntegral", "n": 35, "h": 83}, {"t": "Kavram", "n": 1, "h": 167}, {"t": "Köprü Sorular", "n": 5, "h": 127}]}, {"w": "H3", "title": "H3 · Newton Yasaları (1/2)", "h": 312, "n": 115, "rows": [{"t": "Birlikte Hareket", "n": 10, "h": 449}, {"t": "Makara ve İp", "n": 26, "h": 437}, {"t": "Eğik Düzlem ve Rampa", "n": 10, "h": 429}, {"t": "İvmeli Çerçeve", "n": 13, "h": 342}, {"t": "Sürtünme", "n": 27, "h": 362}, {"t": "Denge ve Normal", "n": 9, "h": 465}, {"t": "Newton Temel", "n": 11, "h": 439}, {"t": "Köprü Sorular", "n": 9, "h": 320}]}, {"w": "H4", "title": "H4 · Dairesel Hareket", "h": 545, "n": 36, "rows": [{"t": "Dairesel Kinematik", "n": 8, "h": 551}, {"t": "Kavram", "n": 2, "h": 545}, {"t": "Merkezcil Kuvvet", "n": 23, "h": 549}, {"t": "Sarkaç ve Düşey Çember", "n": 1, "h": 547}, {"t": "Köprü Sorular", "n": 2, "h": 555}]}, {"w": "H5", "title": "H5 · İş ve Enerji", "h": 619, "n": 79, "rows": [{"t": "Güç", "n": 3, "h": 679}, {"t": "Değişken Kuvvette İş", "n": 12, "h": 649}, {"t": "İş-Enerji Teoremi", "n": 17, "h": 623}, {"t": "Enerji Korunumu ve Yay", "n": 20, "h": 625}, {"t": "İş Kavramı", "n": 22, "h": 619}, {"t": "Köprü Sorular", "n": 5, "h": 683}]}], "en": [{"w": "H1", "title": "H1 · Measurement, Units and Vectors", "h": 5, "n": 38, "rows": [{"t": "Units & Dimensional Analysis", "n": 9, "h": 5}, {"t": "Vector Operations", "n": 11, "h": 7}, {"t": "Dot Product & Angles", "n": 9, "h": 17}, {"t": "Cross Product", "n": 9, "h": 9}]}, {"w": "H2", "title": "H2 · Kinematics (1/2)", "h": 83, "n": 113, "rows": [{"t": "Graphs", "n": 3, "h": 101}, {"t": "Relative Motion", "n": 22, "h": 87}, {"t": "Oblique Projectile", "n": 29, "h": 89}, {"t": "Vertical & Horizontal Projectile", "n": 18, "h": 99}, {"t": "Derivatives & Integrals", "n": 35, "h": 83}, {"t": "Concepts", "n": 1, "h": 167}, {"t": "Bridge Questions", "n": 5, "h": 127}]}, {"w": "H3", "title": "H3 · Newton's Laws (1/2)", "h": 312, "n": 115, "rows": [{"t": "Joint Motion", "n": 10, "h": 449}, {"t": "Pulleys & Ropes", "n": 26, "h": 437}, {"t": "Inclines & Ramps", "n": 10, "h": 429}, {"t": "Accelerating Frames", "n": 13, "h": 342}, {"t": "Friction", "n": 27, "h": 362}, {"t": "Equilibrium & Normal", "n": 9, "h": 465}, {"t": "Newton's Basics", "n": 11, "h": 439}, {"t": "Bridge Questions", "n": 9, "h": 320}]}, {"w": "H4", "title": "H4 · Circular Motion", "h": 545, "n": 36, "rows": [{"t": "Circular Kinematics", "n": 8, "h": 551}, {"t": "Concepts", "n": 2, "h": 545}, {"t": "Centripetal Force", "n": 23, "h": 549}, {"t": "Pendulum & Vertical Circle", "n": 1, "h": 547}, {"t": "Bridge Questions", "n": 2, "h": 555}]}, {"w": "H5", "title": "H5 · Work and Energy", "h": 619, "n": 79, "rows": [{"t": "Power", "n": 3, "h": 679}, {"t": "Variable-Force Work", "n": 12, "h": 649}, {"t": "Work–Energy Theorem", "n": 17, "h": 623}, {"t": "Conservation & Springs", "n": 20, "h": 625}, {"t": "Work Concept", "n": 22, "h": 619}, {"t": "Bridge Questions", "n": 5, "h": 683}]}]};
+const DECK = { tr: 'FIZ1001_Soru_Cozum_TR.html', en: 'FIZ1001_Soru_Cozum_EN.html' };
+const T = {
+  tr: { ttl:'FIZ1001 · 1. Arasınav', lead:'2014–2019 arası 16 sınav, 360 soru. Bir haftaya ya da doğrudan bir konuya gir; soruyu önce kendin çöz, sonra çözümü adım adım aç.',
+        meta:'<b>Prof. Dr. Bora Işıldak</b> · Fizik Bölümü · Yıldız Teknik Üniversitesi',
+        go:'Sorulara git', q:'soru', wk:'Hafta',
+        note:'Her soruda önce şıkkı seçersin, sonra <code>→</code> ile çözüm adımları açılır. Çözümler Claude Opus 5.5 ile denetlendi; şekiller el çizimi SVG. Dosyalar tek parça, internet bağlantısı gerekmez.' },
+  en: { ttl:'FIZ1001 · Midterm 1', lead:'16 exams 2014–2019, 360 questions. Open a week or jump to a single topic; try the question first, then open the solution step by step.',
+        meta:'<b>Prof. Dr. Bora Işıldak</b> · Physics Department · Yildiz Technical University',
+        go:'Go to questions', q:'questions', wk:'Week',
+        note:'Answer first, then press <code>→</code> to reveal the solution steps. Solutions reviewed with Claude Opus 5.5; figures are hand-drawn SVG. Single files, no internet connection required.' }
+};
+let lang = localStorage.getItem('fiz-lang') || 'tr';
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+function render(){
+  const t = T[lang], d = DATA[lang];
+  document.documentElement.lang = lang;
+  document.title = 'FIZ1001 · ' + (lang==='tr' ? '1. Arasınav Soru Çözümleri' : 'Midterm 1 Solutions');
+  document.getElementById('ttl').textContent = t.ttl;
+  document.getElementById('lead').textContent = t.lead;
+  document.getElementById('meta').innerHTML = t.meta;
+  document.getElementById('note').innerHTML = t.note;
+  document.getElementById('bl-tr').className = lang==='tr' ? 'on' : '';
+  document.getElementById('bl-en').className = lang==='en' ? 'on' : '';
+  const f = DECK[lang];
+  document.getElementById('grid').innerHTML = d.map((w,i) => {
+    const rows = w.rows.map(r =>
+      `<li><a href="${f}#${r.h}"><span>${esc(r.t)}</span><i>${r.n}</i></a></li>`).join('');
+    return `<div class="wk">
+      <a class="go" href="${f}#${w.h}" aria-label="${esc(w.title)}"></a>
+      <div class="k">${t.wk} ${i+1} · ${w.n} ${t.q}</div>
+      <h3>${esc(w.title.replace(/^H\d\s·\s/,''))}</h3>
+      <ul class="tps">${rows}</ul>
+      <div class="foot"><b>${t.go} →</b><span>${w.n}</span></div>
+    </div>`;
+  }).join('');
+}
+function setLang(l){ lang = l; localStorage.setItem('fiz-lang', l); render(); }
+function tog(){
+  const t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = t;
+  try{ localStorage.setItem('lesson-theme', t); }catch(e){}
+}
+render();
+</script>
+</body>
+</html>
