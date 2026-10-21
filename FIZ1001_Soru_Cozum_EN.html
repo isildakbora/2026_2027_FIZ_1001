@@ -1518,14 +1518,14 @@ aside.notes{display:none}
 <section class="slide" data-section="H2 · Question 2015-03-21 2" data-time="" data-title="Question 2015-03-21 2" data-topic="Graphs" data-q="2015-03-21 · Q2">
   <span class="kicker">H2 · Question 2015-03-21 2</span>
   <div class="qwrap">
-    <div class="q">A stone is thrown upward at an angle to the horizontal (no air resistance). What does the stone's speed-versus-time graph look like while it is in the air? Graphs: (I) decreasing straight line, (II) concave decreasing curve, (III) U-shaped curve, (IV) curve dipping then rising, (V) humped curve.</div>
+    <div class="q">A stone is thrown upward at an angle to the horizontal (no air resistance). What does the stone's speed-versus-time graph look like while it is in the air? Graphs: (I) decreasing straight line, (II) concave decreasing curve, (III) curve that drops to zero and rises, (IV) curve that dips to a nonzero minimum and rises, (V) humped curve.</div>
   </div>
   <div class="qwrap">
   <div class="opts" id="q-2015-03-21-2">
     <button data-ok="0"><b>a</b>V</button>
-    <button data-ok="1"><b>b</b>III</button>
+    <button data-ok="0"><b>b</b>III</button>
     <button data-ok="0"><b>c</b>II</button>
-    <button data-ok="0"><b>d</b>IV</button>
+    <button data-ok="1"><b>d</b>IV</button>
     <button data-ok="0"><b>e</b>I</button>
   </div>
   <img class="qfig" data-fig="f3" alt="Figure">
@@ -1539,11 +1539,11 @@ aside.notes{display:none}
   <img class="sfig" data-fig="f3" alt="Figure">
   <div class="step"><span class="tag setup">Setup</span><p style="margin-top:8px">Speed is $|\vec{v}| = \sqrt{v_x^2 + v_y^2}$; $v_x$ is constant while $v_y$ passes linearly through zero.</p></div>
   <div class="step"><span class="tag model">Model</span><p style="margin-top:8px">At the peak the vertical component is zero but the horizontal component remains; the speed takes its smallest (nonzero) value.</p></div>
-  <div class="step"><span class="tag model">Derivation</span><p style="margin-top:8px">The speed first decreases, reaches a minimum at the peak, then increases: the U-shaped (III) graph.</p></div>
-  <div class="step"><div class="res"><p>Correct answer: <b>(b)</b> III</p></div></div>
-  <div class="step card coral"><span class="tag warn">Trap</span><p style="margin-top:8px">Anyone confusing this with the graph of the velocity component $v_y$ picks the decreasing line (I); the question asks for the speed ($|\vec{v}|$).</p></div>
-  <div class="step card green"><span class="tag check">Check</span><p style="margin-top:8px">At the peak the speed equals $v_x$; the bottom of the U curve lies above zero.</p></div>
-  <aside class="notes"><p>Stressed that the bottom of the U is not zero.</p></aside>
+  <div class="step"><span class="tag model">Derivation</span><p style="margin-top:8px">The speed first decreases, reaches a nonzero minimum ($v_0\cos\theta$) at the peak, then increases. The only graph whose minimum stays above zero is (IV).</p></div>
+  <div class="step"><div class="res"><p>Correct answer: <b>(d)</b> IV</p></div></div>
+  <div class="step card coral"><span class="tag warn">Trap</span><p style="margin-top:8px">Forgetting $v_x$, one expects zero speed at the peak and picks (III), the vertical-throw graph. Confusing speed with $v_y$ gives (I).</p></div>
+  <div class="step card green"><span class="tag check">Check</span><p style="margin-top:8px">Limit: as $\theta \to 90^\circ$, $v_x \to 0$ and the minimum drops to zero, giving (III). For $\theta < 90^\circ$ the peak speed is $v_0\cos\theta > 0$.</p></div>
+  <aside class="notes"><p>Stress the difference between (III) and (IV): whether the minimum is zero. Graph (IV) is schematic; landing at the launch height, the final speed equals the initial speed.</p></aside>
 </section>
 
 <section class="slide" data-section="H2 · Question 2015-03-21 8" data-time="" data-title="Question 2015-03-21 8" data-topic="Graphs" data-q="2015-03-21 · Q8">
